@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
-use Mrmarchone\LaravelAutoCrud\Console\Commands\GenerateAutoCrudCommand;
-use Mrmarchone\LaravelAutoCrud\LaravelAutoCrudServiceProvider;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Console\Commands\GenerateAutoCrudCommand;
+use Composite\LaravelAutoCrud\LaravelAutoCrudServiceProvider;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
 
 beforeEach(function () {
     $this->app->register(LaravelAutoCrudServiceProvider::class);

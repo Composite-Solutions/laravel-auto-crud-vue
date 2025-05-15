@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Services;
+namespace Composite\LaravelAutoCrud\Services;
 
-use Mrmarchone\LaravelAutoCrud\Builders\DocumentationBuilders\CURLBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\DocumentationBuilders\PostmanBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\DocumentationBuilders\SwaggerAPIBuilder;
+use Composite\LaravelAutoCrud\Builders\DocumentationBuilders\CURLBuilder;
+use Composite\LaravelAutoCrud\Builders\DocumentationBuilders\PostmanBuilder;
+use Composite\LaravelAutoCrud\Builders\DocumentationBuilders\SwaggerAPIBuilder;
 
 class DocumentationGenerator
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Mrmarchone\LaravelAutoCrud\Transformers\EnumTransformer;
+use Composite\LaravelAutoCrud\Transformers\EnumTransformer;
 
 it('can transform enumerations', function () {
     $indent = str_repeat(' ', 4);

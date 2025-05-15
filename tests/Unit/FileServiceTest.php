@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\File;
-use Mrmarchone\LaravelAutoCrud\Services\FileService;
+use Composite\LaravelAutoCrud\Services\FileService;
 
 beforeEach(function () {
     $this->app->setBasePath(__DIR__.'/../');

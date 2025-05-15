@@ -1,9 +1,9 @@
 <?php
 
-namespace Mrmarchone\LaravelAutoCrud\Traits;
+namespace Composite\LaravelAutoCrud\Traits;
 
-use Mrmarchone\LaravelAutoCrud\Services\ModelService;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Services\ModelService;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
 
 trait TableColumnsTrait
 {

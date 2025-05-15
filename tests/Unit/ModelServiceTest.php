@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
-use Mrmarchone\LaravelAutoCrud\Services\ModelService;
+use Composite\LaravelAutoCrud\Services\ModelService;
 
 beforeEach(function () {
     $this->modelsPath = 'app/Models';

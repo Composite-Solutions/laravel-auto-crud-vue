@@ -1,6 +1,6 @@
 <?php
 
-use Mrmarchone\LaravelAutoCrud\Transformers\SpatieDataTransformer;
+use Composite\LaravelAutoCrud\Transformers\SpatieDataTransformer;
 
 it('can convert to string', function () {
     $indent = str_repeat(' ', 4);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Services;
+namespace Composite\LaravelAutoCrud\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Builders;
+namespace Composite\LaravelAutoCrud\Builders;
 
-use Mrmarchone\LaravelAutoCrud\Services\ModelService;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
-use Mrmarchone\LaravelAutoCrud\Traits\TableColumnsTrait;
-use Mrmarchone\LaravelAutoCrud\Transformers\SpatieDataTransformer;
+use Composite\LaravelAutoCrud\Services\ModelService;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Traits\TableColumnsTrait;
+use Composite\LaravelAutoCrud\Transformers\SpatieDataTransformer;
 
 class SpatieDataBuilder extends BaseBuilder
 {

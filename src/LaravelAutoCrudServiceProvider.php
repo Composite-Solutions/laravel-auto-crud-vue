@@ -1,10 +1,10 @@
 <?php
 
-namespace Mrmarchone\LaravelAutoCrud;
+namespace Composite\LaravelAutoCrud;
 
 use Illuminate\Support\ServiceProvider;
-use Mrmarchone\LaravelAutoCrud\Console\Commands\GenerateAutoCrudCommand;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Console\Commands\GenerateAutoCrudCommand;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
 
 class LaravelAutoCrudServiceProvider extends ServiceProvider
 {

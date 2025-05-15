@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Mrmarchone\LaravelAutoCrud\Services\DatabaseValidatorService;
+use Composite\LaravelAutoCrud\Services\DatabaseValidatorService;
 
 beforeEach(function () {
     $this->service = new DatabaseValidatorService;

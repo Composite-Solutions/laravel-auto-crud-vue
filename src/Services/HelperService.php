@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Services;
+namespace Composite\LaravelAutoCrud\Services;
 
 use function Laravel\Prompts\multiselect;
 
@@ -47,12 +47,12 @@ class HelperService
    / /\ \| | | | __/ _ \  | |    |  _  /| |  | | |  | |
   / ____ \ |_| | || (_) | | |____| | \ \| |__| | |__| |
  /_/    \_\__,_|\__\___/   \_____|_|  \_\\____/|_____/
-                                         Free Palestine
+
 ASCII;
 
         echo "\n$asciiArt\n\n";
-        echo "[+] Name: Abdelrahman Muhammed\n";
-        echo "[+] Email: mrmarchone@gmail.com\n";
+        echo "[+] Name: Bence Támba\n";
+        echo "[+] Email: info@composite.hu\n";
     }
 
     public static function askForType($inputType, ?array $types = []): void

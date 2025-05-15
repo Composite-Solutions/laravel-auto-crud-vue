@@ -1,5 +1,5 @@
 {
-    "name": "mrmarchone/laravel-auto-crud",
+    "name": "composite/laravel-auto-crud-vue",
     "description": "Laravel Auto CRUD helps you streamline development and save time.",
     "type": "library",
     "require": {
@@ -11,7 +11,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Mrmarchone\\LaravelAutoCrud\\": "src/"
+            "Composite\\LaravelAutoCrud\\": "src/"
         }
     },
     "autoload-dev": {
@@ -21,14 +21,14 @@
     },
     "authors": [
         {
-            "name": "Abdelrahman Muhammed",
-            "email": "mrmarchone@gmail.com"
+            "name": "Bence Támba",
+            "email": "info@composite.hu"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [
-                "Mrmarchone\\LaravelAutoCrud\\LaravelAutoCrudServiceProvider"
+                "Composite\\LaravelAutoCrud\\LaravelAutoCrudServiceProvider"
             ]
         }
     },

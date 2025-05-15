@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Services;
+namespace Composite\LaravelAutoCrud\Services;
 
 use InvalidArgumentException;
-use Mrmarchone\LaravelAutoCrud\Builders\ControllerBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\RepositoryBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\RequestBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\ResourceBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\RouteBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\ServiceBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\SpatieDataBuilder;
-use Mrmarchone\LaravelAutoCrud\Builders\ViewBuilder;
+use Composite\LaravelAutoCrud\Builders\ControllerBuilder;
+use Composite\LaravelAutoCrud\Builders\RepositoryBuilder;
+use Composite\LaravelAutoCrud\Builders\RequestBuilder;
+use Composite\LaravelAutoCrud\Builders\ResourceBuilder;
+use Composite\LaravelAutoCrud\Builders\RouteBuilder;
+use Composite\LaravelAutoCrud\Builders\ServiceBuilder;
+use Composite\LaravelAutoCrud\Builders\SpatieDataBuilder;
+use Composite\LaravelAutoCrud\Builders\ViewBuilder;
 
 use function Laravel\Prompts\info;
 

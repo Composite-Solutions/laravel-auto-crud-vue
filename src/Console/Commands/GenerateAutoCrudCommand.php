@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Console\Commands;
+namespace Composite\LaravelAutoCrud\Console\Commands;
 
 use Illuminate\Console\Command;
-use Mrmarchone\LaravelAutoCrud\Services\CRUDGenerator;
-use Mrmarchone\LaravelAutoCrud\Services\DatabaseValidatorService;
-use Mrmarchone\LaravelAutoCrud\Services\DocumentationGenerator;
-use Mrmarchone\LaravelAutoCrud\Services\HelperService;
-use Mrmarchone\LaravelAutoCrud\Services\ModelService;
+use Composite\LaravelAutoCrud\Services\CRUDGenerator;
+use Composite\LaravelAutoCrud\Services\DatabaseValidatorService;
+use Composite\LaravelAutoCrud\Services\DocumentationGenerator;
+use Composite\LaravelAutoCrud\Services\HelperService;
+use Composite\LaravelAutoCrud\Services\ModelService;
 
 use function Laravel\Prompts\alert;
 use function Laravel\Prompts\confirm;

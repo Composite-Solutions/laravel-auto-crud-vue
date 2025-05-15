@@ -17,7 +17,7 @@ Laravel Auto CRUD Generator is a package that simplifies CRUD (Create, Read, Upd
 You can install the package via Composer:
 
 ```bash
-composer require mrmarchone/laravel-auto-crud --dev
+composer require composite/laravel-auto-crud-vue --dev
 ```
 
 ## Publish Configuration
@@ -25,7 +25,7 @@ composer require mrmarchone/laravel-auto-crud --dev
 You can publish the configuration file via:
 
 ```bash
-php artisan vendor:publish --provider="Mrmarchone\LaravelAutoCrud\LaravelAutoCrudServiceProvider" --tag="auto-crud-config"
+php artisan vendor:publish --provider="Composite\LaravelAutoCrud\LaravelAutoCrudServiceProvider" --tag="auto-crud-config"
 ```
 
 

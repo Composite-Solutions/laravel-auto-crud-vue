@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
 
 beforeEach(function () {
     // Mock Schema facade to return test columns

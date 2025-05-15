@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Builders;
+namespace Composite\LaravelAutoCrud\Builders;
 
-use Mrmarchone\LaravelAutoCrud\Transformers\EnumTransformer;
+use Composite\LaravelAutoCrud\Transformers\EnumTransformer;
 
 class EnumBuilder extends BaseBuilder
 {

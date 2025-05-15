@@ -1,6 +1,6 @@
 <?php
 
-namespace Mrmarchone\LaravelAutoCrud\Transformers;
+namespace Composite\LaravelAutoCrud\Transformers;
 
 class SpatieDataTransformer
 {

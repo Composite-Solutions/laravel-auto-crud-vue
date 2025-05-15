@@ -1,6 +1,6 @@
 <?php
 
-namespace Mrmarchone\LaravelAutoCrud\Services;
+namespace Composite\LaravelAutoCrud\Services;
 
 use Illuminate\Support\Facades\File;
 

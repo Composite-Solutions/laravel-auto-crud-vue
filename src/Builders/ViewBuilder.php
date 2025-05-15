@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Builders;
+namespace Composite\LaravelAutoCrud\Builders;
 
 use Illuminate\Support\Str;
-use Mrmarchone\LaravelAutoCrud\Services\HelperService;
-use Mrmarchone\LaravelAutoCrud\Services\ModelService;
-use Mrmarchone\LaravelAutoCrud\Services\TableColumnsService;
-use Mrmarchone\LaravelAutoCrud\Traits\TableColumnsTrait;
+use Composite\LaravelAutoCrud\Services\HelperService;
+use Composite\LaravelAutoCrud\Services\ModelService;
+use Composite\LaravelAutoCrud\Services\TableColumnsService;
+use Composite\LaravelAutoCrud\Traits\TableColumnsTrait;
 
 use function Laravel\Prompts\info;
 

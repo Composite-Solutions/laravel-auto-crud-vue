@@ -1,6 +1,6 @@
 <?php
 
-use Mrmarchone\LaravelAutoCrud\Services\HelperService;
+use Composite\LaravelAutoCrud\Services\HelperService;
 
 it('displays signature with correct ASCII art and information', function () {
     // Arrange
@@ -12,10 +12,10 @@ it('displays signature with correct ASCII art and information', function () {
    / /\ \| | | | __/ _ \  | |    |  _  /| |  | | |  | |
   / ____ \ |_| | || (_) | | |____| | \ \| |__| | |__| |
  /_/    \_\__,_|\__\___/   \_____|_|  \_\\____/|_____/
-                                         Free Palestine
 
-[+] Name: Abdelrahman Muhammed
-[+] Email: mrmarchone@gmail.com
+
+[+] Name: Bence Támba
+[+] Email: info@composite.hu
 
 EXPECTED;
 

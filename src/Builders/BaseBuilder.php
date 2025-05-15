@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mrmarchone\LaravelAutoCrud\Builders;
+namespace Composite\LaravelAutoCrud\Builders;
 
-use Mrmarchone\LaravelAutoCrud\Services\FileService;
+use Composite\LaravelAutoCrud\Services\FileService;
 
 abstract class BaseBuilder
 {
