@@ -13,6 +13,7 @@ use Composite\LaravelAutoCrud\Builders\RouteBuilder;
 use Composite\LaravelAutoCrud\Builders\ServiceBuilder;
 use Composite\LaravelAutoCrud\Builders\SpatieDataBuilder;
 use Composite\LaravelAutoCrud\Builders\ViewBuilder;
+use Composite\LaravelAutoCrud\Builders\VueBuilder;
 
 use function Laravel\Prompts\info;
 
@@ -22,7 +23,8 @@ class CRUDGenerator
         private ResourceBuilder $resourceBuilder,
         private RequestBuilder $requestBuilder,
         private RouteBuilder $routeBuilder,
-        private ViewBuilder $viewBuilder,
+//        private ViewBuilder $viewBuilder,
+        private VueBuilder $vueBuilder,
         private RepositoryBuilder $repositoryBuilder,
         private ServiceBuilder $serviceBuilder,
         private SpatieDataBuilder $spatieDataBuilder)
@@ -31,7 +33,8 @@ class CRUDGenerator
         $this->resourceBuilder = new ResourceBuilder;
         $this->requestBuilder = new RequestBuilder;
         $this->routeBuilder = new RouteBuilder;
-        $this->viewBuilder = new ViewBuilder;
+//        $this->viewBuilder = new ViewBuilder;
+        $this->vueBuilder = new VueBuilder;
         $this->repositoryBuilder = new RepositoryBuilder;
         $this->serviceBuilder = new ServiceBuilder;
         $this->spatieDataBuilder = new SpatieDataBuilder;
@@ -121,7 +124,8 @@ class CRUDGenerator
                 : $this->controllerBuilder->createWeb($modelData, $requestName, $options['overwrite']);
         }
 
-        $this->viewBuilder->create($modelData, $options['overwrite']);
+//        $this->viewBuilder->create($modelData, $options['overwrite']);
+        $this->vueBuilder->createIndex($modelData, $requestName, $options['overwrite']);
 
         if (! $controllerName) {
             throw new InvalidArgumentException('Unsupported controller type');

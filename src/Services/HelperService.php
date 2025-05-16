@@ -26,6 +26,24 @@ class HelperService
         return $formattedArray;
     }
 
+    public static function formatArrayToJsSyntax(array $data, bool $removeValuesQuotes = false, int $indentation = 12): string
+    {
+        $indent = str_repeat(' ', $indentation);
+        $formattedArray = "{\n";
+
+        foreach ($data as $key => $value) {
+            if ($removeValuesQuotes) {
+                $formattedArray .= $indent."$key : $value,\n";
+            } else {
+                $formattedArray .= $indent."$key : $value,\n";
+            }
+        }
+
+        $formattedArray .= str_repeat(' ', $indentation - 4).'}';
+
+        return $formattedArray;
+    }
+
     public static function toSnakeCase(string $text): string
     {
         // Convert camelCase or PascalCase (ModelName -> model_name)
