@@ -42,6 +42,162 @@ class VueBuilder extends BaseBuilder
         }, false, 'vue', 'Index');
     }
 
+    public function createCreate(array $modelData, bool $overwrite = false): string
+    {
+        $basePath = 'resources/js/pages/'.HelperService::toSnakeCase(Str::plural($modelData['modelName']));
+        return $this->fileService->createFromStub($modelData, 'create.vue', $basePath, '', $overwrite, function ($modelData) {
+            return [
+                '{{ model }}' => $modelData['modelName'],
+                '{{ modelVariable }}' => lcfirst($modelData['modelName']),
+                '{{ viewPath }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPlural }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPluralCapitalized }}' => Str::plural($modelData['modelName']),
+                '{{ routeName }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+            ];
+        }, false, 'vue', 'Create');
+    }
+
+    public function createEdit(array $modelData, bool $overwrite = false): string
+    {
+        $basePath = 'resources/js/pages/'.HelperService::toSnakeCase(Str::plural($modelData['modelName']));
+        return $this->fileService->createFromStub($modelData, 'edit.vue', $basePath, '', $overwrite, function ($modelData) {
+            return [
+                '{{ model }}' => $modelData['modelName'],
+                '{{ modelVariable }}' => lcfirst($modelData['modelName']),
+                '{{ viewPath }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPlural }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPluralCapitalized }}' => Str::plural($modelData['modelName']),
+                '{{ routeName }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+            ];
+        }, false, 'vue', 'Edit');
+    }
+
+    public function createShow(array $modelData, bool $overwrite = false): string
+    {
+        $basePath = 'resources/js/pages/'.HelperService::toSnakeCase(Str::plural($modelData['modelName']));
+        return $this->fileService->createFromStub($modelData, 'show.vue', $basePath, '', $overwrite, function ($modelData) {
+            return [
+                '{{ model }}' => $modelData['modelName'],
+                '{{ modelVariable }}' => lcfirst($modelData['modelName']),
+                '{{ viewPath }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPlural }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPluralCapitalized }}' => Str::plural($modelData['modelName']),
+                '{{ routeName }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ detailFields }}' => $this->generateDetailFields($modelData),
+            ];
+        }, false, 'vue', 'Show');
+    }
+
+    public function createForm(array $modelData, bool $overwrite = false): string
+    {
+        $basePath = 'resources/js/pages/'.HelperService::toSnakeCase(Str::plural($modelData['modelName'])).'/partials';
+        return $this->fileService->createFromStub($modelData, 'form.vue', $basePath, '', $overwrite, function ($modelData) {
+            return [
+                '{{ model }}' => $modelData['modelName'],
+                '{{ modelVariable }}' => lcfirst($modelData['modelName']),
+                '{{ viewPath }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPlural }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ modelPluralCapitalized }}' => Str::plural($modelData['modelName']),
+                '{{ routeName }}' => HelperService::toSnakeCase(Str::plural($modelData['modelName'])),
+                '{{ formFields }}' => $this->generateFormFields($modelData),
+                '{{ formInputs }}' => $this->generateFormInputs($modelData),
+            ];
+        }, false, 'vue', 'Form');
+    }
+
+    private function generateFormFields(array $modelData): string
+    {
+        $columns = $this->getAvailableColumns($modelData);
+        $formFields = '';
+
+        foreach ($columns as $column) {
+            $columnName = $column['name'];
+            // Skip primary key and timestamps
+            if ($columnName === 'id' || in_array($columnName, ['created_at', 'updated_at', 'deleted_at'])) {
+                continue;
+            }
+
+            $defaultValue = "props.{$modelData['modelName']}?.$columnName ?? ''";
+            $formFields .= "    $columnName: $defaultValue,\n";
+        }
+
+        return $formFields;
+    }
+
+    private function generateFormInputs(array $modelData): string
+    {
+        $columns = $this->getAvailableColumns($modelData);
+        $formInputs = '';
+
+        foreach ($columns as $column) {
+            $columnName = $column['name'];
+            $columnType = $column['type'];
+
+            // Skip primary key and timestamps
+            if ($columnName === 'id' || in_array($columnName, ['created_at', 'updated_at', 'deleted_at'])) {
+                continue;
+            }
+
+            $inputType = 'text';
+
+            // Determine input type based on column type
+            if (in_array($columnType, ['integer', 'int', 'bigint', 'smallint', 'tinyint'])) {
+                $inputType = 'number';
+            } elseif (in_array($columnType, ['date', 'datetime', 'timestamp'])) {
+                $inputType = 'date';
+            } elseif ($columnType === 'boolean') {
+                $inputType = 'checkbox';
+            } elseif (in_array($columnType, ['text', 'longtext', 'mediumtext'])) {
+                $inputType = 'textarea';
+            }
+
+            $label = ucfirst(str_replace('_', ' ', $columnName));
+
+            $formInputs .= <<<HTML
+            <FormField name="$columnName">
+                <FormItem>
+                    <FormLabel>$label</FormLabel>
+                    <FormControl>
+                        <Input type="$inputType" placeholder="$label" v-model="form.$columnName" />
+                    </FormControl>
+                    <InputError :message="form.errors.$columnName" />
+                </FormItem>
+            </FormField>
+
+HTML;
+        }
+
+        return $formInputs;
+    }
+
+    private function generateDetailFields(array $modelData): string
+    {
+        $columns = $this->getAvailableColumns($modelData);
+        $detailFields = '';
+        $modelVariable = lcfirst($modelData['modelName']);
+
+        foreach ($columns as $column) {
+            $columnName = $column['name'];
+
+            // Skip timestamps if needed
+            if (in_array($columnName, ['created_at', 'updated_at', 'deleted_at'])) {
+                continue;
+            }
+
+            $label = ucfirst(str_replace('_', ' ', $columnName));
+
+            $detailFields .= <<<HTML
+            <div class="space-y-1">
+                <h4 class="font-medium">$label</h4>
+                <p>{{ $modelVariable.$columnName }}</p>
+            </div>
+
+HTML;
+        }
+
+        return $detailFields;
+    }
+
     private function getInterfaceData(array $modelData): array
     {
         $columns = $this->getAvailableColumns($modelData);

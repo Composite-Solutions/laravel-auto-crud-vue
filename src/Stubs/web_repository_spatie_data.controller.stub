@@ -5,6 +5,7 @@ namespace {{ namespace }};
 use App\Http\Controllers\Controller;
 use {{ spatieDataNamespace }};
 use {{ serviceNamespace }};
+use Inertia\Inertia;
 
 class {{ class }} extends Controller
 {
@@ -24,15 +25,18 @@ class {{ class }} extends Controller
         $this->{{ serviceVariable }} = ${{ serviceVariable }};
     }
 
-    public function index(): \Illuminate\Contracts\View\View
+    public function index()
     {
         ${{ modelPlural }} = {{ spatieData }}::collect($this->{{ serviceVariable }}->getAll());
-        return view('{{ viewPath }}.index', compact('{{ modelPlural }}'));
+        return Inertia::render('{{ viewPath }}/Index', [
+            '{{ modelPlural }}' => ${{ modelPlural }},
+            'filters' => request()->only(['search', 'sort', 'direction']),
+        ]);
     }
 
-    public function create(): \Illuminate\Contracts\View\View
+    public function create()
     {
-        return view('{{ viewPath }}.create');
+        return Inertia::render('{{ viewPath }}/Create');
     }
 
     public function store({{ spatieData }} $data): \Illuminate\Http\RedirectResponse
@@ -41,16 +45,20 @@ class {{ class }} extends Controller
         return redirect()->route('{{ routeName }}.index')->with('success', 'Created successfully');
     }
 
-    public function show(int $id): \Illuminate\Contracts\View\View
+    public function show(int $id)
     {
         ${{ modelVariable }} = $this->{{ serviceVariable }}->getById($id);
-        return view('{{ viewPath }}.show', compact('{{ modelVariable }}'));
+        return Inertia::render('{{ viewPath }}/Show', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
     }
 
-    public function edit(int $id): \Illuminate\Contracts\View\View
+    public function edit(int $id)
     {
         ${{ modelVariable }} = $this->{{ serviceVariable }}->getById($id);
-        return view('{{ viewPath }}.edit', compact('{{ modelVariable }}'));
+        return Inertia::render('{{ viewPath }}/Edit', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
     }
 
     public function update({{ spatieData }} $data, int $id): \Illuminate\Http\RedirectResponse

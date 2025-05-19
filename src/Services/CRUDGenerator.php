@@ -126,6 +126,10 @@ class CRUDGenerator
 
 //        $this->viewBuilder->create($modelData, $options['overwrite']);
         $this->vueBuilder->createIndex($modelData, $requestName, $options['overwrite']);
+        $this->vueBuilder->createCreate($modelData, $options['overwrite']);
+        $this->vueBuilder->createEdit($modelData, $options['overwrite']);
+        $this->vueBuilder->createShow($modelData, $options['overwrite']);
+        $this->vueBuilder->createForm($modelData, $options['overwrite']);
 
         if (! $controllerName) {
             throw new InvalidArgumentException('Unsupported controller type');

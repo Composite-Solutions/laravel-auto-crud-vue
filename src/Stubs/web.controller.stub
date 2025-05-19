@@ -5,18 +5,22 @@ namespace {{ namespace }};
 use App\Http\Controllers\Controller;
 use {{ requestNamespace }};
 use {{ modelNamespace }};
+use Inertia\Inertia;
 
 class {{ class }} extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\View
+    public function index()
     {
         ${{ modelPlural }} = {{ model }}::latest()->paginate(10);
-        return view('{{ viewPath }}.index', compact('{{ modelPlural }}'));
+        return Inertia::render('{{ viewPath }}/Index', [
+            '{{ modelPlural }}' => ${{ modelPlural }},
+            'filters' => request()->only(['search', 'sort', 'direction']),
+        ]);
     }
 
-    public function create(): \Illuminate\Contracts\View\View
+    public function create()
     {
-        return view('{{ viewPath }}.create');
+        return Inertia::render('{{ viewPath }}/Create');
     }
 
     public function store({{ request }} $request): \Illuminate\Http\RedirectResponse
@@ -25,14 +29,18 @@ class {{ class }} extends Controller
         return redirect()->route('{{ routeName }}.index')->with('success', 'Created successfully');
     }
 
-    public function show({{ model }} ${{ modelVariable }}): \Illuminate\Contracts\View\View
+    public function show({{ model }} ${{ modelVariable }})
     {
-        return view('{{ viewPath }}.show', compact('{{ modelVariable }}'));
+        return Inertia::render('{{ viewPath }}/Show', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
     }
 
-    public function edit({{ model }} ${{ modelVariable }}): \Illuminate\Contracts\View\View
+    public function edit({{ model }} ${{ modelVariable }})
     {
-        return view('{{ viewPath }}.edit', compact('{{ modelVariable }}'));
+        return Inertia::render('{{ viewPath }}/Edit', [
+            '{{ modelVariable }}' => ${{ modelVariable }},
+        ]);
     }
 
     public function update({{ request }} $request, {{ model }} ${{ modelVariable }}): \Illuminate\Http\RedirectResponse

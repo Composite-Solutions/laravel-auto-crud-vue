@@ -1,0 +1,36 @@
+<script setup lang="ts">
+import AppLayout from '@/layouts/AppLayout.vue';
+import { type BreadcrumbItem, {{ model }} } from '@/types';
+import { Head } from '@inertiajs/vue3';
+import Form from './partials/Form.vue';
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Dashboard',
+        href: '/dashboard',
+    },
+    {
+        title: '{{ modelPluralCapitalized }}',
+        href: '/{{ modelPlural }}',
+    },
+    {
+        title: 'Edit',
+        href: '/{{ modelPlural }}/edit',
+    },
+];
+
+defineProps<{
+    {{ modelVariable }}: {{ model }};
+}>();
+
+</script>
+
+<template>
+    <Head title="{{ modelPluralCapitalized }}" />
+
+    <AppLayout :breadcrumbs="breadcrumbs">
+        <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
+            <Form :{{ modelVariable }}="{{ modelVariable }}" />
+        </div>
+    </AppLayout>
+</template>
