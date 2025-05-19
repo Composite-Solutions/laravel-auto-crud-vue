@@ -91,6 +91,7 @@ class VueBuilder extends BaseBuilder
     public function createForm(array $modelData, bool $overwrite = false): string
     {
         $basePath = 'resources/js/pages/'.HelperService::toSnakeCase(Str::plural($modelData['modelName'])).'/partials';
+        $fileName = $modelData['modelName'] . 'Form';
         return $this->fileService->createFromStub($modelData, 'form.vue', $basePath, '', $overwrite, function ($modelData) {
             return [
                 '{{ model }}' => $modelData['modelName'],
@@ -102,7 +103,7 @@ class VueBuilder extends BaseBuilder
                 '{{ formFields }}' => $this->generateFormFields($modelData),
                 '{{ formInputs }}' => $this->generateFormInputs($modelData),
             ];
-        }, false, 'vue', 'Form');
+        }, false, 'vue', $fileName);
     }
 
     private function generateFormFields(array $modelData): string
@@ -117,7 +118,7 @@ class VueBuilder extends BaseBuilder
                 continue;
             }
 
-            $defaultValue = "props.{$modelData['modelName']}?.$columnName ?? ''";
+            $defaultValue = "props." . lcfirst($modelData['modelName']) . "?.$columnName ?? ''";
             $formFields .= "    $columnName: $defaultValue,\n";
         }
 
@@ -196,6 +197,47 @@ HTML;
         }
 
         return $detailFields;
+    }
+
+    public function createTypeDefinition(array $modelData, bool $overwrite = false): string
+    {
+        $basePath = 'resources/js/types';
+        $fileName = lcfirst($modelData['modelName']) . '.d';
+        return $this->fileService->createFromStub($modelData, 'model.d.ts', $basePath, '', $overwrite, function ($modelData) {
+            return [
+                '{{ model }}' => $modelData['modelName'],
+                '{{ typeFields }}' => $this->generateTypeFields($modelData),
+            ];
+        }, false, 'ts', $fileName);
+    }
+
+    private function generateTypeFields(array $modelData): string
+    {
+        $columns = $this->getAvailableColumns($modelData);
+        $typeFields = '';
+
+        foreach ($columns as $column) {
+            $columnName = $column['name'];
+            $columnType = $column['type'];
+
+            // Skip primary key and timestamps
+            if ($columnName === 'id' || in_array($columnName, ['created_at', 'updated_at', 'deleted_at'])) {
+                continue;
+            }
+
+            $tsType = 'string';
+
+            // Determine TypeScript type based on column type
+            if (in_array($columnType, ['integer', 'int', 'bigint', 'smallint', 'tinyint'])) {
+                $tsType = 'number';
+            } elseif ($columnType === 'boolean') {
+                $tsType = 'boolean';
+            }
+
+            $typeFields .= "    $columnName: $tsType;\n";
+        }
+
+        return $typeFields;
     }
 
     private function getInterfaceData(array $modelData): array

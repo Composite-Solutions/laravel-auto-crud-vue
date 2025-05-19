@@ -2,7 +2,7 @@
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import Form from './partials/Form.vue';
+import Form from './partials/{{ model }}Form.vue';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

@@ -130,6 +130,7 @@ class CRUDGenerator
         $this->vueBuilder->createEdit($modelData, $options['overwrite']);
         $this->vueBuilder->createShow($modelData, $options['overwrite']);
         $this->vueBuilder->createForm($modelData, $options['overwrite']);
+        $this->vueBuilder->createTypeDefinition($modelData, $options['overwrite']);
 
         if (! $controllerName) {
             throw new InvalidArgumentException('Unsupported controller type');
