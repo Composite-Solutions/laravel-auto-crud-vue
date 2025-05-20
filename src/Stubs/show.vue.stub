@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { type BreadcrumbItem, {{ model }} } from '@/types';
+import { type BreadcrumbItem} from '@/types';
+import { {{ model }} } from '@/types/{{ modelVariable }}';
 import { Head } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
 import { router } from '@inertiajs/vue3';

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { {{ model }} } from '@/types/{{ modelVariable }}';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, router } from '@inertiajs/vue3';
 import InputError from '@/components/InputError.vue';
 
 const props = defineProps<{
@@ -21,6 +21,16 @@ const onSubmit = () => {
         form.post(route('{{ routeName }}.store'));
     }
 };
+
+const onCancel = () => {
+    router.visit(route('{{ routeName }}.index'));
+};
+
+const onDelete = () => {
+    if (confirm('Are you sure you want to delete this {{ model }}?')) {
+        router.delete(route('{{ routeName }}.destroy', props.{{ modelVariable }}?.id));
+    }
+};
 </script>
 
 <template>
@@ -30,7 +40,7 @@ const onSubmit = () => {
                 {{ props.{{ modelVariable }} ? 'Edit {{ model }}' : 'Create {{ model }}' }}
             </h2>
             <div class="space-x-2">
-                <Button v-if="props.{{ modelVariable }}" type="button" variant="destructive"> Delete</Button>
+                <Button v-if="props.{{ modelVariable }}" type="button" variant="destructive" @click="onDelete"> Delete</Button>
             </div>
         </div>
 
@@ -39,7 +49,7 @@ const onSubmit = () => {
         </div>
 
         <div class="flex items-center justify-end space-x-4 pt-4">
-            <Button type="button" variant="outline" :disabled="form.processing"> Cancel</Button>
+            <Button type="button" variant="outline" :disabled="form.processing" @click="onCancel"> Cancel</Button>
             <Button type="submit" :disabled="form.processing">
                 <span v-if="form.processing">
                     {{ props.{{ modelVariable }} ? 'Updating...' : 'Creating...' }}
