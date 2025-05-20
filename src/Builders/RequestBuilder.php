@@ -107,13 +107,13 @@ class RequestBuilder extends BaseBuilder
 
             // Handle unique columns
             if ($isUnique) {
-                $rules[] = 'unique:'.$column['table'].','.$columnName;
+                $modelVar = '$this->'.lcfirst($modelData['modelName']);
+                $rules[] = "unique:{$column['table']},{$columnName}' . ({$modelVar} ? ','.{$modelVar}->id : '').'";
             }
 
             // Add rules to the validation array
             $validationRules[$columnName] = implode('|', $rules);
         }
-
         return $validationRules;
     }
 }
