@@ -2,6 +2,7 @@
 import DataTable from '@/components/ui/datatable/DataTable.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
+import { {{ model }} } from '@/types/{{ modelVariable }}';
 import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -14,8 +15,6 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/{{ modelPlural }}',
     },
 ];
-
-interface {{ model }} {{ data }}
 
 defineProps<{
     {{ modelPlural }}: {{ model }}[];
